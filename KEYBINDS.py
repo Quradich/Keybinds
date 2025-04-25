@@ -47,10 +47,6 @@ for key in keys.split(","):
     back.setAlignment(Qt.AlignmentFlag.AlignCenter)
     labels[key.upper()] = back
     label.setMouseTracking(False)
-    #try:
-        #keyboard.hook_key(key.upper(),thing)
-    #except ValueError:
-    #    Error(key)
 window.setWindowTitle("Keybinds")
 window.setStyleSheet('background-color: #00ff00')
 window.setWindowIcon(QIcon("keybinds.png"))
@@ -65,7 +61,6 @@ def main():
             Bool = keyboard.is_pressed(nam)
             if isPressed[nam.lower()] == Bool: continue
             isPressed[nam.lower()] = Bool
-            #clr = Bool and "f" * 6 or "00ff00"
             label.setHidden(not Bool)
         time.sleep(.003)
 threading.Thread(target=main).start()
