@@ -49,7 +49,7 @@ for key in keys.split(","):
     label.setMouseTracking(False)
 window.setWindowTitle("Keybinds")
 window.setStyleSheet('background-color: #00ff00')
-window.setWindowIcon(QIcon("keybinds.png"))
+window.setWindowIcon(QIcon("keybinds.ico"))
 window.setWindowFlags(Qt.WindowType.WindowCloseButtonHint)
 window.setFixedSize(len(keys.split(",")) * 131 + 11,120 + 22)
 window.show()
