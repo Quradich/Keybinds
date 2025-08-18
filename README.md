@@ -6,6 +6,5 @@ Edit `keys.txt` to edit keys for recording in this format:
 ## Recording
 Hook up [keys.txt](keys.txt) to OBS,
 
-Add Crop filter with 10 on left,top,right,bottom
-
-And ur done.
+Add relative crop filter with 10 on top,bottom
+Note: instead of guessing how much crop right and left, look for keycrop.txt when running keybinds 
