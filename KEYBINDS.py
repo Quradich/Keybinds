@@ -213,7 +213,7 @@ def Update(lastPos):
         back = QLabel(window)
         back.setText(text)
         back.setStyleSheet("background-color: #ffffff; border: 10px solid")
-        back.setGeometry(lastPos,11,max(len(text) * 60 + 11,120),120)
+        back.setGeometry(lastPos,11,max(label.width() + 11,120),120)
         back.setHidden(True)
         back.setFont(font)
         back.setAlignment(Qt.AlignmentFlag.AlignCenter)
