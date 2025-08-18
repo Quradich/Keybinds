@@ -86,7 +86,11 @@ index = -1
 
 def clamp(x:float|int,minimum:float|int,maximum:float|int):
     return min(maximum,max(x,minimum))
-for key in keys.split(","):
+lastPos = 11
+positionTable = {}
+sizeTable = {}
+keyTable = keys.split(",")
+for key in keyTable:
     if key == "":
         Error('Invalid key',"Invalid format, please edit keys.txt")
     if key in isPressed:    
@@ -104,23 +108,35 @@ for key in keys.split(","):
     label.setAlignment(Qt.AlignmentFlag.AlignCenter)
     label.setStyleSheet("background-color: #00ff00; border: 10px solid")
     label.setFont(font)
-    label.setGeometry(11 + 131 * (index % 5),11 + int(index / 5) * 131,120,120)
+    label.setGeometry(lastPos,11,max(len(key.upper()) * 60,120),120)
     isPressed[key] = False
     back = QLabel(window)
     back.setText(key.upper())
     back.setStyleSheet("background-color: #ffffff; border: 10px solid")
-    back.setGeometry(11 + 131 * (index % 5),11 + int(index / 5) * 131,120,120)
+    back.setGeometry(label.x(),11,120,120)
     back.setHidden(True)
     back.setFont(font)
     back.setAlignment(Qt.AlignmentFlag.AlignCenter)
     labels[key.upper()] = back
     label.setMouseTracking(False)
-
+    positionTable[index] = lastPos
+    sizeTable[index] = label.width()
+    lastPos += label.width() + 11
+try:
+    file = open("keycrop.txt","x")
+except:
+    file = open("keycrop.txt","w+")
+result = ""
+for i in positionTable:
+    v = positionTable[i]
+    result += f"KEY \"{keyTable[i].upper()}\":\nStart position: {v - 1}\nEnd position: {lastPos - (v + sizeTable[i]) + 10}\n"
+file.write(result)
+file.close()
 window.setWindowTitle("Keybinds")
 window.setStyleSheet('background-color: #00ff00')
 window.setWindowIcon(QIcon("keybinds.ico"))
 window.setWindowFlags(Qt.WindowType.WindowCloseButtonHint)
-window.setFixedSize(clamp(lenght,0,5) * 131 + 11,120 + int((lenght - 1) / 5) * 131 + 22)
+window.setFixedSize(lastPos + 11,144)
 window.show()
 alive = True
 def main():
