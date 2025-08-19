@@ -40,7 +40,7 @@ try:
     f = open("keybinds.ico","r")
     f.close()
 except FileNotFoundError:
-    Warning("Not found icon","Error: couldn't find keybinds icon")
+    Error("Not found icon","Error: couldn't find keybinds icon")
 def on_clicked(*args):
     button = args[2].name
     pressed = args[3]
@@ -259,7 +259,7 @@ def Update(lastPos):
     return lastPos
 
 lastPos = Update(lastPos)
-offsetX = int(lastPos / 2) + 10
+offsetX = max(int(lastPos / 2),160) + 10
 
 nameLabel = QLabel(propwindow)
 nameLabel.setText("Display Name")
@@ -302,7 +302,7 @@ def New(event):
     global lastPos,selected,offsetX
     lastPos = 11
     lastPos = Update(lastPos)
-    offsetX = int(lastPos / 2) + 10
+    offsetX = max(int(lastPos / 2),160) + 10
     AdjustSizes()
     selected = labels["q"]
     UpdateSelection()
@@ -311,7 +311,7 @@ def Destroy(event):
     key = GetSelectionKey()
     keyTable.remove(key.lower())
     lastPos = Update(11)
-    offsetX = max(int(lastPos / 2),240) + 10
+    offsetX = max(int(lastPos / 2),160) + 10
     AdjustSizes()
     selected = None
     UpdateSelection()
@@ -373,7 +373,7 @@ def clicked(event):
         except:
             pass
     lastPos = Update(lastPos)
-    offsetX = int(lastPos / 2) + 10
+    offsetX = max(int(lastPos / 2),160) + 10
     AdjustSizes()
     selected = propLabels[key.upper()]
     UpdateSelection()
